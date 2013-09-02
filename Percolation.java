@@ -23,7 +23,21 @@ public class Percolation {
       return this.grid[i][j];
     }
     
+    //method to open a site if it is not already open
+    public void open(int i, int j) {
+        //first check to see if site is already open,
+        if (isOpen(i,j)) {
+            System.out.println("Site is already open.");
+        }
+        else {
+            this.grid[i][j] = true;
+            //connect this site to adjacent sites
+        }
+    }
+    
     public static void main(String[] args) {
+        
+        WeightedQuickUnionUF uf = new WeightedQuickUnionUF();
         final boolean logging = true;
         final int temp = 1;
         
@@ -38,6 +52,14 @@ public class Percolation {
         if (logging) System.out.println("Test N-1,N-1");
         System.out.println(p.isOpen(99,99));
         
+        if (logging) System.out.println("Opening 1,1.");
+        p.open(1,1);
+        
+        if (logging) System.out.println("Checking status of 1,1.");
+        System.out.println(p.isOpen(1,1));
+        
+        if (logging) System.out.println("Checking status of 1,1.");
+        p.open(1,1);
         //if (logging) System.out.println("Test N, N:  SHOULD FAIL");
         //System.out.println(p.isOpen(100,100));
         
